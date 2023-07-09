@@ -1,0 +1,437 @@
+:root{
+    --primary-color: rgb(132, 189, 221);
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #837e7e;
+    --border-color: #dbdbdb;
+    --header-height: 40px;
+}
+
+html{
+    font-size: 62.5%;
+    line-height: 16px;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+/* grid dùng để có khảng cách lề trang */
+.grid{
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.grid__full-width{
+    width: 100%;
+}
+.grid__row{
+    display: flex;
+    flex-wrap: wrap;
+}
+/* animation */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes growth{
+    from{
+        transform: scale(var(--growth-from));
+    }
+    to{
+        transform: scale(var(--growth-to));
+    }
+}
+@keyframes Grơwth{
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* modal */
+.modal{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    display: flex;
+    animation: fadeIn linear 0.1s;
+}
+
+.modal__overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.4);
+}
+.modal__body{
+    --growth-from: 0.7;
+    --growth-to: 1;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    animation: growth linear 0.1s;
+}
+/* -------------------- */
+.main{
+    overflow: hidden;
+}
+.right{
+    float: right;
+}
+.triangle-bottom::before{ /*tạo tam giác có mũi nhọn hướng lên trên*/
+    content: "";
+    border-style:solid; 
+    border-width: 15px 20px;/* tạo hình*/
+    border-color: transparent transparent var(--white-color) transparent;/* transparent là để màu trong suốt trái phải trên để tạo hình tam giác  */
+    position: absolute;
+    right: 25px;
+    top: -30px;
+    padding: ;
+    
+}
+
+/* begin header*/
+.header{
+    background-color: var(--primary-color);
+    position: fixed;  /* dùng để luôn giữ thanh header ở trên của trình duyệt */
+    top: 0;
+    height: var(--header-height); /* chiều cao của header là 50px có thể thay đổi ở dòng 7  */
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+.header-hight{
+    height: var(--header-height);
+}
+.header-navbar{
+    display: flex;/* dùng để cho các item đứng cùng 1 hàng */
+    justify-content: space-between;
+    height: 100%;
+}
+.header-navbar-list{
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0px;
+    display: flex;
+}
+.header-navbar-list-item{
+    margin: 0 8px;
+    position: relative;
+    padding: 0 6px;
+    display: inline-flex;
+    
+}
+.header-navbar-list-item,
+.header-navbar-list-item-link
+{
+    display: inline-block;
+    font-size: 15px;
+    color: var(--white-color);
+    text-decoration: none;/* bỏ gạch chân */
+    line-height: var(--header-height);
+    
+}
+.header-navbar-list-item:hover,
+.header-navbar-list-item-link:hover{
+    cursor: pointer;
+    background-color: #bbdaee;
+    color: var(--black-color);
+}
+
+/* search */
+.header-navbar-search{
+    
+    width: 450px;
+    height: 30px;
+    background-color: var(--white-color);
+    margin: 5px 0px;
+    border-radius: 2px;/* bo cong khung */
+    text-align: center;
+    display: flex;
+}
+.header-navbar-search-input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 0px 16px;
+    font-size: 12px;
+    color: var(--text-color);
+    border-radius: 2px;/* bo cong khung ở đây nữa vì input này chiếm hết class cha */
+}
+.header-navbar-search-btn{
+    background-color: var(--primary-color);
+    border: none;
+    height: 26px;
+    width: 40px;
+    border-radius: 2px;
+    margin: 2px 4px;
+    box-shadow: 0 1px 2px #e0e0e0;
+}
+.header-navbar-search-btn:hover{
+    /* background-color: #84bddd; */
+    cursor: pointer;
+    background-color: rgba(132, 189, 221, 0.8);
+}
+/* icon */
+.search-icon{
+    font-size: 16px;
+    color: var(--white-color);
+}
+.noti-icon{
+    font-size: 18px;
+}
+/* làm gạch phân cách */
+.separate::after{
+    content: '';
+    display: block;
+    position: absolute;
+    border-left: 1px solid var(--white-color);
+    height: 18px;
+    right: -8px;/* dưa gạch ra giữa vì ở class header-navbar-list-item ta margin 8px*/
+    top: 50%;
+    transform: translateY(-50%); 
+    /* làm như này để lúc thay đổi kích thước thì không phải sửa lại */
+}
+
+/* thông báo */
+
+.header-noti{
+    position: absolute;
+    top: 100%;
+    width: 300px;
+    right: 0;/* đẩy về đúng vị trí đúng ý */
+    background-color: var(--white-color);
+    border: 1px solid #d3d3d3;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: default; /* bỏ con trỏ bấm được */
+    transform-origin: 90% 0%;/* nó mở từ thông báo */
+    animation: Grơwth ease-in 0.25s ; /* animation cho thông báo */
+    will-change: opacity, transform;/* dùng để tối ưu animation(chuyển động) */
+    display: none;
+    box-shadow: 0 1px 2px #e0e0e0;
+}
+
+.header-navbar-list-item-has-noti:hover .header-noti{
+    display: block;
+}
+.header-noti-list{
+    list-style: none;
+    padding-left: 0;
+}
+.header-noti-item{
+    display: flex;
+    background-color: rgba(132, 189, 221, 0.2);
+}
+.header-noti-item:hover{
+    background-color: rgba(132, 189, 221, 0.08);
+}
+.header-noti-item-viewed{
+    background-color: rgba(230, 230, 230, 0.08);
+}
+.header-noti-item-link{
+    display: flex;
+    width: 100%;
+    padding-left: 12px;
+    text-decoration: none;
+    
+}
+.header-noti-infor{
+    margin-left: 12px;
+    
+}
+.header-noti-img{
+    width: 50px;
+    object-fit: contain;
+}
+.header-noti-name{
+    
+    color: var(--black-color);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2px;
+}
+.header-noti-author{
+    color: var(--text-color);
+    
+    font-size: 10px;
+    line-height: 2px;
+
+}
+.header-noti-footer{
+    display: flex;
+}
+.header-noti-footer-btn{
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 12px;
+    text-align: center;
+    font-weight: 300;
+    padding: 6px 0px;
+    width: 100%;
+    line-height: 20px;
+    border-top: 1px solid #c3c3c3 ;
+}
+
+/* đã đăng nhập */
+.header-navbar-user{
+    display: flex;
+    justify-items: center;
+}
+.user-img{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-top: 10px;
+    border: 1px solid rgba(0,0,0, 0.1); /* tạo khng viền cho hình */
+}
+.user-name{
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.header-user-menu{
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    width: 161px;
+    right: 0;/* đẩy về đúng vị trí đúng ý */
+    background-color: var(--white-color);
+    border: 1px solid #d3d3d3;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: default; /* bỏ con trỏ bấm được */
+    animation: Grơwth ease-in 0.25s ; /* animation */
+    will-change: opacity, transform;/* dùng để tối ưu animation(chuyển động) */
+    box-shadow: 0 1px 2px #e0e0e0;
+    display: none;
+    
+
+}
+.header-navbar-user:hover .header-user-menu{
+    display: block;
+}
+.user-menu{
+    list-style: none;
+    
+    padding: 0;
+   
+}
+.user-menu-item{
+    
+}
+.user-menu-item a{
+    font-size: 14px;
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    padding: 2px 16px;
+    
+}
+.user-menu-item a:hover{
+    background-color: rgba(230, 230, 230, 0.3);
+}
+/* end header */
+
+/* begin container */
+.container{
+    margin-top: var(--header-height);
+    height: 1800px;
+}
+
+.container-slide{
+    position: relative;
+    padding-top: 50%;
+    background: url(image/Nen.jpg) top center / cover no-repeat;
+    
+}
+.container-slide-text{
+    position: absolute;
+    color: var(--white-color);
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+.container-slide-text p{
+    font-size: 12px;
+}
+
+.container-slide-text h1{
+    font-weight: 600;
+}
+/* địa điểm */
+.container-slide-local-list{
+    width: 80%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 80px;
+    list-style: none;
+}
+.local-item{
+
+}
+.local-item-link{
+
+}
+.local-item .local-img{
+   height: 240px;
+   width: 180px;
+}
+
+/* blog */
+.container-blog-row{
+    width: 100%;
+    
+    display: flex;
+    justify-content: space-between;
+}
+.container-blog-leftcol{
+    float: left;
+    width: 75%;
+}
+.container-blog-rightcol{
+    padding-left: 20px; 
+    float: left;
+    width: 25%;
+    background-color: #d8e4f4;;
+}
+.card-blogs{
+
+}
+.card-blogs-list{
+    list-style: none;
+}
+.card-blogs-item{
+
+}
+.card-blogs-item-link{
+
+}
+/* end container */
+/* <ul class="header-noti-list triangle-bottom">
+        <li class="header-noti-item">
+            <a href="/Blog_PhuYen.html" class="header-noti-item-link">
+                <img src="/image/Phu_Yen_blog1.png" alt="Phú Yên" class="header-noti-img">
+                <div class="header-noti-infor">
+                    <p class="header-noti-name">Blog Phú Yên</p>
+                    <p class="header-noti-author">Tác giả: Phan Minh Hiển</p>
+                </div>
+            </a>
+        </li> */
